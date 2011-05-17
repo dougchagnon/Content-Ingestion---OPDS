@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.w3schools.com"
+    targetNamespace="http://www.w3schools.com" xmlns="http://www.w3schools.com" elementFormDefault="qualified">
+     
+    <xs:element name="metadata">
+        <xs:complexType>
+            <xs:choice minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="booktitle" type="xs:anyType" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="printisbn13" minOccurs="0" maxOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="13"/>
+                            <xs:maxLength value="17"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="webisbn13" minOccurs="0" maxOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="13"/>
+                            <xs:maxLength value="17"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="printisbn10" minOccurs="0" maxOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="10"/>
+                            <xs:maxLength value="13"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="webisbn10" minOccurs="0" maxOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="10"/>
+                            <xs:maxLength value="13"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="productid" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="subject" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="edition" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="exclusive" minOccurs="0" maxOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="yes"/>
+                            <xs:enumeration value="no"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="exclusiveexpire" type="xs:date" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="author" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="lastname" type="xs:anyType" minOccurs="0"
+                                maxOccurs="1"/>
+                            <xs:element name="firstname" type="xs:anyType" minOccurs="0"
+                                maxOccurs="1"/>
+                            <xs:element name="othername" type="xs:anyType" minOccurs="0"
+                                maxOccurs="1"/>
+                            <xs:element name="authorblurburl" type="xs:string" minOccurs="0"
+                                maxOccurs="1"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="description" type="xs:anyType" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="publishdate" type="xs:anyType" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="publisher" type="xs:anyType" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="copyright" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="copyrightdata" type="xs:anyType" minOccurs="1"
+                                maxOccurs="1"/>
+                            <xs:element name="copyrightyear" type="xs:gYear" minOccurs="1"
+                                maxOccurs="1"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="buyprinturl" type="xs:anyType" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="relatedfiles" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="type">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:enumeration value="catalog page"></xs:enumeration>
+                                    <xs:enumeration value="errata"></xs:enumeration>
+                                    <xs:enumeration value="supplemental content"></xs:enumeration>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+                        <xs:attribute name="url" type="xs:string"/>
+                        <xs:attribute name="description" type="xs:string"></xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="extrassafari" minOccurs="0" maxOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="yes"/>
+                            <xs:enumeration value="no"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="extraslink" minOccurs="0" maxOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="yes"/>
+                            <xs:enumeration value="no"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="extrasurl" type="xs:anyType" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="previewchapter" minOccurs="0" maxOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:positiveInteger">
+                            <xs:totalDigits value="2"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="pagecount" minOccurs="0" maxOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:positiveInteger">
+                            <xs:totalDigits value="4"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="msrp" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="sourcefilesformat" type="xs:anyType" minOccurs="0" maxOccurs="1"/>
+                <xs:element name="coverimages" minOccurs="0" maxOccurs="4">        
+                    <xs:complexType>
+                        <xs:attribute name="role">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                            <xs:enumeration value="category-page"/>
+                            <xs:enumeration value="book-page"/>
+                            <xs:enumeration value="small-cover"/>
+                            <xs:enumeration value="large-cover"/>
+                                </xs:restriction>
+                            </xs:simpleType>        
+                        </xs:attribute>
+                        <xs:attribute name="fileref" type="xs:anySimpleType"/>
+                        <xs:attribute name="width" type="xs:positiveInteger"/>
+                        <xs:attribute name="depth" type="xs:positiveInteger"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="chapterdownloads" minOccurs="0" maxOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="yes"/>
+                            <xs:enumeration value="no"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="fullbookdownloads" minOccurs="0" maxOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="yes"/>
+                            <xs:enumeration value="no"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="tokenschapterdownload" minOccurs="0" maxOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:positiveInteger">
+                            <xs:totalDigits value="2"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="tokensbookdownload" minOccurs="0" maxOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:positiveInteger">
+                            <xs:totalDigits value="2"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="mobiepub" minOccurs="0" maxOccurs="1">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="yes"/>
+                            <xs:enumeration value="no"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="bookstructurelist" minOccurs="1" maxOccurs="1">
+<xs:complexType>
+    <xs:sequence>
+                            <xs:element name="bookstructureunit" minOccurs="1"
+                                maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="role" type="xs:string"/>
+                                    <xs:attribute name="tokens" type="xs:string"/>
+                                    <xs:attribute name="linkid" type="xs:string"/>
+                                    <xs:attribute name="title" type="xs:string"/>
+                                    <xs:attribute name="download" type="xs:string"/>
+                                    <xs:attribute name="view" type="xs:string"/>
+                                </xs:complexType>
+                            </xs:element></xs:sequence></xs:complexType>
+                </xs:element>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

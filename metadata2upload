@@ -1,0 +1,51 @@
+#usr/bin/bash
+#
+PREFIX="../"
+export BOOK=`(find -mindepth 1 -maxdepth 1 -type d -name '*' ! -name '.*'  -printf '%f\n')`
+#export ROUTE=`(find -mindepth 2 -maxdepth 2 -type d -name '*' | cut -c3-)`
+#
+for id in ${BOOK[@]}
+do
+echo $id
+cd $id
+#
+#
+#
+# lowerit
+# convert all file names in the current directory to lower case
+# only operates on plain files--does not change the name of directories
+# will ask for verification before overwriting an existing file
+#for x in `ls`
+#     do
+#     if [ ! -f $x ]; then
+#      continue
+#       fi
+#     lc=`echo $x  | tr '['F']' '['f']'`
+#     if [ $lc != $x ]; then
+#       mv -i $x $lc
+#    fi
+#    done
+#
+#Copy Python NCX script to local folder
+#
+cp ../get_ncx.py get_ncx.py
+#
+#Pull the toc.ncx file from the EPUB and output to folder
+#
+python ../get_ncx.py > ../toc.ncx
+#
+#Run the XSL that combines the needed data for the bookstructurelist from TOC.ncx with submitted metadata and output final metadata.xml
+#
+xsltproc ../metadata_sbo.xsl metadata_original.xml > metadata_sbo.xml
+xsltproc ../metadata_bvd.xsl metadata_original.xml > metadata.xml
+#
+#remove outputted toc.ncx file
+#
+rm ../toc.ncx
+#
+#remove local python ncx script
+#
+rm get_ncx.py
+#
+cd $PREFIX
+done

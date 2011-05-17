@@ -1,0 +1,41 @@
+#usr/bin/bash
+#
+PREFIX="../"
+export BOOK=`(find -mindepth 1 -maxdepth 1 -type d -name '*' ! -name '.*'  -printf '%f\n')`
+#export ROUTE=`(find -mindepth 2 -maxdepth 2 -type d -name '*' | cut -c3-)`
+#
+for id in ${BOOK[@]}
+do
+echo $id
+cd $id
+#
+#
+#
+#
+#Create the trigger file
+#
+cp ../update.txt $id.txt
+#
+#
+#Create sub-folder to hold all files to be zipped
+#
+mkdir $id
+#
+#Move files that need to be uploaded into the title folder
+#
+mv metadata.xml $id
+mv "$id"_xs.jpg $id
+mv "$id"_s.jpg $id
+mv "$id"_large.jpg $id
+mv "$id"_cs.jpg $id
+mv $id.pdf $id
+mv $id.epub $id
+#
+#Add folder to a zip file
+#
+zip -rX $id.zip $id
+#
+rm -r $id
+#
+cd $PREFIX
+done
