@@ -38,6 +38,7 @@ python ../get_ncx.py > ../toc.ncx
 #
 xsltproc ../metadata_sbo.xsl metadata_original.xml > metadata_sbo.xml
 xsltproc ../metadata_bvd.xsl metadata_original.xml > metadata.xml
+#xsltproc ../metadata_sbo.xsl metadata_original.xml > metadata_sbo_nobsl.xml
 #
 #remove outputted toc.ncx file
 #

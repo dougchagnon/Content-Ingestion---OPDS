@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
     xmlns:ns1="http://www.w3schools.com"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <xsl:output indent="yes" method="xml"/>
@@ -60,7 +61,6 @@
                     <xsl:copy-of select="prevedition"/>
                     <xsl:copy-of select="graphic"/>
                     <xsl:copy-of select="relatedfiles"/>
-                    <xsl:copy-of select="grbook"/>
  
      
      <xsl:element name="bookstructurelist" xmlns:ncx="http://www.daisy.org/z3986/2005/ncx/">
@@ -77,7 +77,6 @@
                          <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
                          <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
                          <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
-                         <!--               <xsl:attribute name="view"><xsl:value-of select="$chapterpreview"/><xsl:text>public</xsl:text></xsl:attribute> -->
                      </xsl:element>
                  </xsl:when>
                  <xsl:when test="string-length(@src)=15 and @src[starts-with(., 'xhtml/ch')]">
@@ -87,7 +86,6 @@
                          <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
                          <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
                          <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
-                         <!--         <xsl:attribute name="view"><xsl:value-of select="$chapterpreview"/><xsl:text>public</xsl:text></xsl:attribute>  -->
                      </xsl:element>
                  </xsl:when>
                  <xsl:when test="string-length(@src)=9 and @src[starts-with(., 'ch')]">
@@ -97,17 +95,206 @@
                          <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
                          <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
                          <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
-                         <!--        <xsl:attribute name="view"><xsl:value-of select="$chapterpreview"/><xsl:text>public</xsl:text></xsl:attribute>  -->
                      </xsl:element>
                  </xsl:when>
-                 <xsl:when test="../ncx:navLabel/ncx:text[starts-with(., 'Chapter')]">
+                 <!-- for German books -->
+                 <xsl:when test="string-length(@src)=10 and @src[starts-with(., 'kap')]">
                      <xsl:element name="bookstructureunit">
                          <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
                          <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
                          <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
                          <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
                          <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
-                         <!--        <xsl:attribute name="view"><xsl:value-of select="$chapterpreview"/><xsl:text>public</xsl:text></xsl:attribute>  -->
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=11 and @src[starts-with(., 'kap')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=15 and @src[starts-with(., 'Text/ch')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=16 and @src[starts-with(., 'xhtml/ch')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                <xsl:when test="string-length(@src)=10 and @src[starts-with(., 'ch')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                </xsl:when>
+                 <xsl:when test="../ncx:navLabel/ncx:text[starts-with(., 'Chapter ')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="../ncx:navLabel/ncx:text[starts-with(., 'CHAPTER ')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <!-- extra BSL units being pulled in -->     
+             <!--    <xsl:when test="../../ncx:navPoint">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:if test="../../ncx:navPoint[@id]"><xsl:value-of select="."/></xsl:if></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                             </xsl:when> -->
+                 <xsl:when test="string-length(@src)=14 and @src[starts-with(., 'Text/pt')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=15 and @src[starts-with(., 'xhtml/pt')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=9 and @src[starts-with(., 'pt')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=16 and @src[starts-with(., 'Text/part')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=17 and @src[starts-with(., 'xhtml/part')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=11 and @src[starts-with(., 'part')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=15 and @src[starts-with(., 'Text/pt')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=16 and @src[starts-with(., 'xhtml/pt')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=10 and @src[starts-with(., 'pt')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=17 and @src[starts-with(., 'Text/part')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=18 and @src[starts-with(., 'xhtml/part')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=12 and @src[starts-with(., 'part')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="../ncx:navLabel/ncx:text[starts-with(., 'Part ')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="../ncx:navLabel/ncx:text[starts-with(., 'PART ')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
                      </xsl:element>
                  </xsl:when>
                  <xsl:otherwise>
@@ -124,7 +311,6 @@
                          <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
                          <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
                          <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
-                         <!--             <xsl:attribute name="view"><xsl:value-of select="$chapterpreview"/><xsl:text>public</xsl:text></xsl:attribute>  -->
                      </xsl:element>
                  </xsl:when>
                  <xsl:when test="string-length(@src)=15 and @src[starts-with(., 'xhtml/ch')]">
@@ -134,7 +320,6 @@
                          <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
                          <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
                          <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
-                         <!--              <xsl:attribute name="view"><xsl:value-of select="$chapterpreview"/><xsl:text>public</xsl:text></xsl:attribute>  -->
                      </xsl:element>
                  </xsl:when>
                  <xsl:when test="string-length(@src)=9 and @src[starts-with(., 'ch')]">
@@ -144,23 +329,447 @@
                          <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
                          <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
                          <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
-                         <!--           <xsl:attribute name="view"><xsl:value-of select="$chapterpreview"/><xsl:text>public</xsl:text></xsl:attribute>  -->
                      </xsl:element>
                  </xsl:when>
-                 <xsl:when test="../navLabel/text[starts-with(., 'Chapter')]">
+                 <!-- for German books -->
+                 <xsl:when test="string-length(@src)=10 and @src[starts-with(., 'kap')]">
                      <xsl:element name="bookstructureunit">
                          <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
                          <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
                          <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
                          <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
                          <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
-                         <!--           <xsl:attribute name="view"><xsl:value-of select="$chapterpreview"/><xsl:text>public</xsl:text></xsl:attribute>  -->
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=11 and @src[starts-with(., 'kap')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=15 and @src[starts-with(., 'Text/ch')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=16 and @src[starts-with(., 'xhtml/ch')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=10 and @src[starts-with(., 'ch')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when> 
+                 <xsl:when test="../navLabel/text[starts-with(., 'Chapter ')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="../navLabel/text[starts-with(., 'CHAPTER ')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <!-- extra BSL units being pulled in -->
+              <!--   <xsl:when test="../../navPoint[string-length(@id)=4 and @id[starts-with(., 'ch')]]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when> -->
+                 <xsl:when test="string-length(@src)=14 and @src[starts-with(., 'Text/pt')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=15 and @src[starts-with(., 'xhtml/pt')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=9 and @src[starts-with(., 'pt')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=16 and @src[starts-with(., 'Text/part')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=17 and @src[starts-with(., 'xhtml/part')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=11 and @src[starts-with(., 'part')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=15 and @src[starts-with(., 'Text/pt')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=16 and @src[starts-with(., 'xhtml/pt')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=10 and @src[starts-with(., 'pt')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=17 and @src[starts-with(., 'Text/part')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=18 and @src[starts-with(., 'xhtml/part')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=12 and @src[starts-with(., 'part')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>                
+                 <xsl:when test="../navLabel/text[starts-with(., 'Part ')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="../navLabel/text[starts-with(., 'PART ')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
                      </xsl:element>
                  </xsl:when>
                  <xsl:otherwise>
                  </xsl:otherwise> 
              </xsl:choose>
          </xsl:for-each>
+         
+         <!-- Handling the NAV file in EPUB 3.0 -->
+                 
+                 <xsl:for-each select="document('nav001.xhtml')//xhtml:a">
+                           <xsl:choose> 
+                        <xsl:when test="string-length(@href)=17 and @href[starts-with(., '../Text/ch')]">
+                        <xsl:element name="bookstructureunit">
+                        <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                        <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                        <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                        <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                        <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>                        
+                        </xsl:element>
+                        </xsl:when>
+                        <xsl:when test="string-length(@href)=15 and @href[starts-with(., 'xhtml/ch')]">
+                        <xsl:element name="bookstructureunit">
+                        <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                        <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                        <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                        <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                        <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                        </xsl:element>
+                        </xsl:when>
+                        <xsl:when test="starts-with(., 'Chapter')">
+                        <xsl:element name="bookstructureunit">
+                        <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                        <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                        <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                        <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                        <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>                       
+                        </xsl:element>
+                        </xsl:when>
+                        <xsl:when test="starts-with(., 'CHAPTER')">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>                                      
+                                   </xsl:element>
+                        </xsl:when>
+                               <xsl:when test="string-length(@href)=14 and @href[starts-with(., 'Text/ch')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <!-- for German books -->
+                               <xsl:when test="string-length(@href)=10 and @href[starts-with(., 'kap')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=11 and @href[starts-with(., 'kap')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=9 and @href[starts-with(., 'ch')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>                        
+                               <xsl:when test="string-length(@href)=15 and @href[starts-with(., 'Text/ch')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=16 and @href[starts-with(., 'xhtml/ch')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=10 and @href[starts-with(., 'ch')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=14 and @href[starts-with(., 'Text/pt')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=15 and @href[starts-with(., 'xhtml/pt')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=9 and @href[starts-with(., 'pt')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=16 and @href[starts-with(., 'Text/part')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=17 and @href[starts-with(., 'xhtml/part')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=11 and @href[starts-with(., 'part')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>                        
+                               <xsl:when test="string-length(@href)=15 and @href[starts-with(., 'Text/pt')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=16 and @href[starts-with(., 'xhtml/pt')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=10 and @href[starts-with(., 'pt')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=17 and @href[starts-with(., 'Text/part')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=18 and @href[starts-with(., 'xhtml/part')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=12 and @href[starts-with(., 'part')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>                        
+                               <xsl:when test="starts-with(., 'Part ')">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="starts-with(., 'PART ')">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                        <xsl:otherwise>
+                        </xsl:otherwise> 
+                        </xsl:choose>
+                </xsl:for-each>
          
      </xsl:element>
 
@@ -172,13 +781,13 @@
      <xsl:for-each select="ns1:metadata">
          <xsl:element name="safarimeta">
              <xsl:attribute name="fpi">
-                 <xsl:value-of select="ns1:productid"/>
+                 <xsl:value-of select="ns1:fpid"/>
              </xsl:attribute>
          <xsl:element name="title">
              <xsl:value-of select="ns1:booktitle"/>
          </xsl:element>
              <xsl:element name="isbn">
-                 <xsl:value-of select="ns1:printisbn13"/>
+                 <xsl:value-of select="ns1:isbn"/>
              </xsl:element>
              <xsl:element name="aliases">
                  <xsl:for-each select="ns1:printisbn13">
@@ -263,26 +872,130 @@
                  </xsl:attribute>
              </xsl:element>
              </xsl:for-each>
+             <xsl:for-each select="ns1:aliases">
+                 <xsl:copy-of select="."/>
+             </xsl:for-each>
              <xsl:element name="bibliomisc">
                  <xsl:for-each select="ns1:buyprinturl">
                      <xsl:attribute name="role"><xsl:text>buyprint</xsl:text></xsl:attribute>
                      <xsl:attribute name="url"><xsl:value-of select="."/></xsl:attribute>
                  </xsl:for-each>
              </xsl:element>
-             <xsl:element name="relatedfiles">
-             <xsl:for-each select="ns1:relatedfiles">
-                 <xsl:element name="filegroup">
-                     <xsl:element name="description">
-                         <xsl:value-of select="@description"/>
+             <xsl:element name="relatedfiles">  
+                 <xsl:for-each select="ns1:extras/ns1:extras_files">
+                     <xsl:if test="child::ns1:description and not(child::ns1:file)">
+                         <xsl:for-each select="ns1:description">
+                             <xsl:copy-of select="."/>               
+                         </xsl:for-each>
+                     </xsl:if>
+                     <xsl:if test="child::ns1:file and not(child::ns1:description)">
+                         <xsl:element name="filegroup">
+                         <xsl:for-each select="ns1:file">
+                                     <xsl:element name="file">
+                                         <xsl:for-each select="@role">
+                                             <xsl:attribute name="role">
+                                                 <xsl:value-of select="."/>
+                                             </xsl:attribute>               
+                                         </xsl:for-each>
+                                         <xsl:for-each select="@platform">
+                                             <xsl:attribute name="platform">
+                                                 <xsl:value-of select="."/>
+                                             </xsl:attribute>               
+                                         </xsl:for-each>
+                                         <xsl:for-each select="@segmented">
+                                             <xsl:attribute name="segmented">
+                                                 <xsl:value-of select="."/>
+                                             </xsl:attribute>               
+                                         </xsl:for-each>
+                                         <xsl:for-each select="ns1:description">
+                                             <xsl:copy-of select="."/>               
+                                         </xsl:for-each>
+                                         <xsl:for-each select="@id">
+                                             <xsl:attribute name="id">
+                                                 <xsl:value-of select="."/>
+                                             </xsl:attribute>
+                                         </xsl:for-each>
+                                         <xsl:for-each select="@url">
+                                             <xsl:attribute name="url">
+                                                 <xsl:value-of select="."/>
+                                             </xsl:attribute>
+                                         </xsl:for-each>
+                                         <xsl:for-each select="@format">
+                                             <xsl:attribute name="format">
+                                                 <xsl:value-of select="."/>
+                                             </xsl:attribute>
+                                         </xsl:for-each>
+                                         <xsl:for-each select="@size">
+                                             <xsl:attribute name="size">
+                                                 <xsl:value-of select="."/>
+                                             </xsl:attribute>
+                                         </xsl:for-each>
+                                      <!--   <xsl:if test=". !=''">
+                                             <xsl:value-of select="."/>
+                                         </xsl:if>
+                                         <xsl:if test=". =''">
+                                             <xsl:value-of select="."/>
+                                         </xsl:if> -->
+                                     </xsl:element>
+                         </xsl:for-each>
+                             </xsl:element>
+                     </xsl:if>
+                     <xsl:if test="child::ns1:description and child::ns1:file">
+                     <xsl:element name="filegroup">
+                         <xsl:for-each select="ns1:description">
+                             <xsl:copy-of select="."/>               
+                         </xsl:for-each>
+                         <xsl:for-each select="ns1:file">
+                                     <xsl:element name="ulink">
+                                         <xsl:for-each select="@role">
+                                             <xsl:attribute name="role">
+                                                 <xsl:value-of select="."/>
+                                             </xsl:attribute>               
+                                         </xsl:for-each>
+                                         <xsl:for-each select="@platform">
+                                             <xsl:attribute name="platform">
+                                                 <xsl:value-of select="."/>
+                                             </xsl:attribute>               
+                                         </xsl:for-each>
+                                         <xsl:for-each select="@segmented">
+                                             <xsl:attribute name="segmented">
+                                                 <xsl:value-of select="."/>
+                                             </xsl:attribute>               
+                                         </xsl:for-each>
+                                         <xsl:for-each select="ns1:description">
+                                             <xsl:copy-of select="."/>               
+                                         </xsl:for-each>
+                                         <xsl:for-each select="@id">
+                                             <xsl:attribute name="id">
+                                                 <xsl:value-of select="."/>
+                                             </xsl:attribute>
+                                         </xsl:for-each>
+                                         <xsl:for-each select="@url">
+                                             <xsl:attribute name="url">
+                                                 <xsl:value-of select="."/>
+                                             </xsl:attribute>
+                                         </xsl:for-each>
+                                         <xsl:for-each select="@format">
+                                             <xsl:attribute name="format">
+                                                 <xsl:value-of select="."/>
+                                             </xsl:attribute>
+                                         </xsl:for-each>
+                                         <xsl:for-each select="@size">
+                                             <xsl:attribute name="size">
+                                                 <xsl:value-of select="."/>
+                                             </xsl:attribute>
+                                         </xsl:for-each>
+                                         <xsl:if test=". !=''">
+                                             <xsl:value-of select="."/>
+                                         </xsl:if>
+                                         <xsl:if test=". =''">
+                                             <xsl:value-of select="."/>
+                                         </xsl:if>
+                                     </xsl:element>
+                                 </xsl:for-each> 
                      </xsl:element>
-                     <xsl:element name="ulink">
-                         <xsl:attribute name="url">
-                             <xsl:value-of select="@url"/>
-                         </xsl:attribute>
-                         <xsl:value-of select="@type"/>
-                     </xsl:element>
-                 </xsl:element>        
-             </xsl:for-each>
+                     </xsl:if>
+                 </xsl:for-each>
        </xsl:element>
 
              <xsl:element name="bookstructurelist" xmlns:ncx="http://www.daisy.org/z3986/2005/ncx/">
@@ -299,7 +1012,6 @@
                                  <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
                                  <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
                                  <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
-                                 <!--               <xsl:attribute name="view"><xsl:value-of select="$chapterpreview"/><xsl:text>public</xsl:text></xsl:attribute> -->
                              </xsl:element>
                          </xsl:when>
                          <xsl:when test="string-length(@src)=15 and @src[starts-with(., 'xhtml/ch')]">
@@ -309,7 +1021,6 @@
                                  <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
                                  <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
                                  <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
-                                 <!--         <xsl:attribute name="view"><xsl:value-of select="$chapterpreview"/><xsl:text>public</xsl:text></xsl:attribute>  -->
                              </xsl:element>
                          </xsl:when>
                          <xsl:when test="string-length(@src)=9 and @src[starts-with(., 'ch')]">
@@ -319,17 +1030,206 @@
                                  <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
                                  <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
                                  <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
-                                 <!--        <xsl:attribute name="view"><xsl:value-of select="$chapterpreview"/><xsl:text>public</xsl:text></xsl:attribute>  -->
                              </xsl:element>
                          </xsl:when>
-                         <xsl:when test="../ncx:navLabel/ncx:text[starts-with(., 'Chapter')]">
+                         <!-- for German books -->
+                 <xsl:when test="string-length(@src)=10 and @src[starts-with(., 'kap')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=11 and @src[starts-with(., 'kap')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                         <xsl:when test="string-length(@src)=15 and @src[starts-with(., 'Text/ch')]">
                              <xsl:element name="bookstructureunit">
                                  <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
                                  <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
                                  <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
                                  <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
                                  <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
-                                 <!--           <xsl:attribute name="view"><xsl:value-of select="$chapterpreview"/><xsl:text>public</xsl:text></xsl:attribute>  -->
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=16 and @src[starts-with(., 'xhtml/ch')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=10 and @src[starts-with(., 'ch')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="../ncx:navLabel/ncx:text[starts-with(., 'Chapter ')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="../ncx:navLabel/ncx:text[starts-with(., 'CHAPTER ')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <!-- extra BSL units being pulled in -->
+           <!--      <xsl:when test="../../ncx:navPoint[string-length(@id)=4 and @id[starts-with(., 'ch')]]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when> -->
+                         <xsl:when test="string-length(@src)=14 and @src[starts-with(., 'Text/pt')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=15 and @src[starts-with(., 'xhtml/pt')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=9 and @src[starts-with(., 'pt')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=16 and @src[starts-with(., 'Text/part')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=17 and @src[starts-with(., 'xhtml/part')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=11 and @src[starts-with(., 'part')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=15 and @src[starts-with(., 'Text/pt')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=16 and @src[starts-with(., 'xhtml/pt')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=10 and @src[starts-with(., 'pt')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=17 and @src[starts-with(., 'Text/part')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=18 and @src[starts-with(., 'xhtml/part')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=12 and @src[starts-with(., 'part')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="../ncx:navLabel/ncx:text[starts-with(., 'Part ')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="../ncx:navLabel/ncx:text[starts-with(., 'PART ')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
                              </xsl:element>
                          </xsl:when>
                          <xsl:otherwise>
@@ -346,7 +1246,6 @@
                                  <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
                                  <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
                                  <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
-                                 <!--             <xsl:attribute name="view"><xsl:value-of select="$chapterpreview"/><xsl:text>public</xsl:text></xsl:attribute>  -->
                              </xsl:element>
                          </xsl:when>
                          <xsl:when test="string-length(@src)=15 and @src[starts-with(., 'xhtml/ch')]">
@@ -356,7 +1255,6 @@
                                  <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
                                  <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
                                  <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
-                                 <!--              <xsl:attribute name="view"><xsl:value-of select="$chapterpreview"/><xsl:text>public</xsl:text></xsl:attribute>  -->
                              </xsl:element>
                          </xsl:when>
                          <xsl:when test="string-length(@src)=9 and @src[starts-with(., 'ch')]">
@@ -366,23 +1264,447 @@
                                  <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
                                  <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
                                  <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
-                                 <!--           <xsl:attribute name="view"><xsl:value-of select="$chapterpreview"/><xsl:text>public</xsl:text></xsl:attribute>  -->
                              </xsl:element>
                          </xsl:when>
-                         <xsl:when test="../navLabel/text[starts-with(., 'Chapter')]">
+                         <!-- for German books -->
+                 <xsl:when test="string-length(@src)=10 and @src[starts-with(., 'kap')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                 <xsl:when test="string-length(@src)=11 and @src[starts-with(., 'kap')]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when>
+                         <xsl:when test="string-length(@src)=15 and @src[starts-with(., 'Text/ch')]">
                              <xsl:element name="bookstructureunit">
                                  <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
                                  <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
                                  <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
                                  <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
                                  <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
-                                 <!--           <xsl:attribute name="view"><xsl:value-of select="$chapterpreview"/><xsl:text>public</xsl:text></xsl:attribute>  -->
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=16 and @src[starts-with(., 'xhtml/ch')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=10 and @src[starts-with(., 'ch')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="../navLabel/text[starts-with(., 'Chapter ')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="../navLabel/text[starts-with(., 'CHAPTER ')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <!-- extra BSL units being pulled in -->
+            <!--     <xsl:when test="../../navPoint[string-length(@id)=4 and @id[starts-with(., 'ch')]]">
+                     <xsl:element name="bookstructureunit">
+                         <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                         <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                         <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
+                         <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                         <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                     </xsl:element>
+                 </xsl:when> -->
+                         <xsl:when test="string-length(@src)=14 and @src[starts-with(., 'Text/pt')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=15 and @src[starts-with(., 'xhtml/pt')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=9 and @src[starts-with(., 'pt')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=16 and @src[starts-with(., 'Text/part')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=17 and @src[starts-with(., 'xhtml/part')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=11 and @src[starts-with(., 'part')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=15 and @src[starts-with(., 'Text/pt')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=16 and @src[starts-with(., 'xhtml/pt')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=10 and @src[starts-with(., 'pt')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=17 and @src[starts-with(., 'Text/part')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=18 and @src[starts-with(., 'xhtml/part')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="string-length(@src)=12 and @src[starts-with(., 'part')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../ncx:navLabel/ncx:text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="../navLabel/text[starts-with(., 'Part ')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                             </xsl:element>
+                         </xsl:when>
+                         <xsl:when test="../navLabel/text[starts-with(., 'PART ')]">
+                             <xsl:element name="bookstructureunit">
+                                 <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                 <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                 <xsl:attribute name="title"><xsl:value-of select="../navLabel/text"/></xsl:attribute>
+                                 <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                 <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
                              </xsl:element>
                          </xsl:when>
                          <xsl:otherwise>
                          </xsl:otherwise> 
                      </xsl:choose>
                  </xsl:for-each>
+                 
+                 <!-- Handling the NAV file in EPUB 3.0 -->
+                 
+                 <xsl:for-each select="document('nav001.xhtml')//xhtml:a">
+                           <xsl:choose> 
+                        <xsl:when test="string-length(@href)=17 and @href[starts-with(., '../Text/ch')]">
+                        <xsl:element name="bookstructureunit">
+                        <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                        <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                        <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                        <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                        <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>                        
+                        </xsl:element>
+                        </xsl:when>
+                        <xsl:when test="string-length(@href)=15 and @href[starts-with(., 'xhtml/ch')]">
+                        <xsl:element name="bookstructureunit">
+                        <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                        <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                        <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                        <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                        <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                        </xsl:element>
+                        </xsl:when>
+                        <xsl:when test="starts-with(., 'Chapter')">
+                        <xsl:element name="bookstructureunit">
+                        <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                        <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                        <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                        <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                        <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>                       
+                        </xsl:element>
+                        </xsl:when>
+                        <xsl:when test="starts-with(., 'CHAPTER')">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>                                      
+                                   </xsl:element>
+                        </xsl:when>
+                               <xsl:when test="string-length(@href)=14 and @href[starts-with(., 'Text/ch')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <!-- for German books -->
+                               <xsl:when test="string-length(@href)=10 and @href[starts-with(., 'kap')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=11 and @href[starts-with(., 'kap')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=9 and @href[starts-with(., 'ch')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>                        
+                               <xsl:when test="string-length(@href)=15 and @href[starts-with(., 'Text/ch')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=16 and @href[starts-with(., 'xhtml/ch')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=10 and @href[starts-with(., 'ch')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>chapter</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=14 and @href[starts-with(., 'Text/pt')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=15 and @href[starts-with(., 'xhtml/pt')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=9 and @href[starts-with(., 'pt')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=16 and @href[starts-with(., 'Text/part')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=17 and @href[starts-with(., 'xhtml/part')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=11 and @href[starts-with(., 'part')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>                        
+                               <xsl:when test="string-length(@href)=15 and @href[starts-with(., 'Text/pt')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=16 and @href[starts-with(., 'xhtml/pt')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=10 and @href[starts-with(., 'pt')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=17 and @href[starts-with(., 'Text/part')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=18 and @href[starts-with(., 'xhtml/part')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="string-length(@href)=12 and @href[starts-with(., 'part')]">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>                        
+                               <xsl:when test="starts-with(., 'Part ')">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                               <xsl:when test="starts-with(., 'PART ')">
+                                   <xsl:element name="bookstructureunit">
+                                       <xsl:attribute name="role"><xsl:text>part</xsl:text></xsl:attribute>
+                                       <xsl:attribute name="linkid"><xsl:value-of select="../@id"/></xsl:attribute>
+                                       <xsl:attribute name="title"><xsl:value-of select="."/></xsl:attribute>
+                                       <xsl:attribute name="download"><xsl:value-of select="$chapterdownload"/></xsl:attribute>
+                                       <xsl:attribute name="tokens"><xsl:value-of select="$chaptertokens"/></xsl:attribute>
+                                   </xsl:element>
+                               </xsl:when>
+                        <xsl:otherwise>
+                        </xsl:otherwise> 
+                        </xsl:choose>
+                </xsl:for-each>
                  
              </xsl:element>
 
